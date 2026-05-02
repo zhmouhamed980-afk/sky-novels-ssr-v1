@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نتائج البحث عن: <%= query %></title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 10px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .card img { width: 100%; border-radius: 4px; height: 200px; object-fit: cover; }
+        a { text-decoration: none; color: #333; }
+    </style>
+</head>
+<body>
+    <a href="/">← العودة للرئيسية</a>
+    <h1>نتائج البحث عن: "<%= query %>"</h1>
+    
+    <% if (results.length === 0) { %>
+        <p>لا توجد نتائج.</p>
+    <% } else { %>
+        <div class="grid">
+            <% results.forEach(novel => { %>
+                <a href="/novel/<%= novel.id %>" class="card">
+                    <img src="<%= novel.cover_url || novel.cover %>" alt="<%= novel.title %>">
+                    <h3><%= novel.title %></h3>
+                </a>
+            <% }) %>
+        </div>
+    <% } %>
+</body>
+</html>
