@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="generator" content="Madara">
     <title><%= novel.title %></title>
 </head>
 <body class="wp-manga-template-default">
@@ -10,12 +11,16 @@
             <h1><%= novel.title %></h1>
         </div>
         <div class="summary_image">
-            <img src="<%= novel.coverImage || novel.cover_url || novel.cover %>" alt="<%= novel.title %>">
+            <img src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
+                 data-src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
+                 data-lazy-src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
+                 srcset="<%= novel.coverImage || novel.cover_url || novel.cover %> 1x"
+                 class="img-responsive" alt="<%= novel.title %>">
         </div>
         <div class="post-content">
             <div class="post-content_item">
                 <div class="summary-heading"><h5>المؤلف</h5></div>
-                <div class="author-content"><%= novel.author || 'غير معروف' %></div>
+                <div class="summary-content author-content"><%= novel.author || 'غير معروف' %></div>
             </div>
             <div class="post-content_item">
                 <div class="summary-heading"><h5>الحالة</h5></div>
@@ -23,7 +28,7 @@
             </div>
             <div class="post-content_item">
                 <div class="summary-heading"><h5>التصنيفات</h5></div>
-                <div class="genres-content">
+                <div class="summary-content genres-content">
                     <% (novel.tags || novel.categories || []).forEach(tag => { %>
                     <a href="#"><%= tag %></a>
                     <% }) %>
@@ -32,7 +37,9 @@
         </div>
         <div class="summary__content">
             <h5>القصة</h5>
-            <p><%= novel.description || novel.summary %></p>
+            <div class="post-content_item">
+                <p><%= novel.description || novel.summary %></p>
+            </div>
         </div>
         <div class="listing-chapters_wrap">
             <ul class="main version-chap">

@@ -1,7 +1,7 @@
 {
   "name": "sky-novels-ssr",
-  "version": "4.0.0",
-  "description": "Final Madara-Compatible SSR Wrapper for Shai Al-Rewayat",
+  "version": "5.0.0",
+  "description": "Strict Madara-Compatible SSR Wrapper for Scrapers",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

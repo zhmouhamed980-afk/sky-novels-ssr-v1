@@ -2,14 +2,14 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="generator" content="Madara">
     <title><%= chapter.title %></title>
 </head>
 <body class="wp-manga-template-default">
     <div class="read-container">
-        <div class="reading-content">
-            <div class="text-left">
-                <%- chapter.content %>
-            </div>
+        <h1 class="chapter-title entry-title"><%= chapter.title %></h1>
+        <div class="reading-content chapter-content entry-content text-left">
+            <%- chapter.content %>
         </div>
         <div class="nav-links">
             <div class="nav-previous">
