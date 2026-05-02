@@ -6,49 +6,51 @@
     <title><%= novel.title %></title>
 </head>
 <body class="wp-manga-template-default">
-    <div class="site-content">
-        <div class="post-title">
-            <h1><%= novel.title %></h1>
-        </div>
-        <div class="summary_image">
-            <img src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
-                 data-src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
-                 data-lazy-src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
-                 srcset="<%= novel.coverImage || novel.cover_url || novel.cover %> 1x"
-                 class="img-responsive" alt="<%= novel.title %>">
-        </div>
-        <div class="post-content">
-            <div class="post-content_item">
-                <div class="summary-heading"><h5>المؤلف</h5></div>
-                <div class="summary-content author-content"><%= novel.author || 'غير معروف' %></div>
+    <div class="wrap">
+        <div class="site-content">
+            <div class="post-title">
+                <h1><%= novel.title %></h1>
             </div>
-            <div class="post-content_item">
-                <div class="summary-heading"><h5>الحالة</h5></div>
-                <div class="summary-content"><%= novel.status === 'مكتملة' || novel.is_completed ? 'Completed' : 'OnGoing' %></div>
+            <div class="summary_image">
+                <img src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
+                     data-src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
+                     data-lazy-src="<%= novel.coverImage || novel.cover_url || novel.cover %>" 
+                     srcset="<%= novel.coverImage || novel.cover_url || novel.cover %> 1x"
+                     class="img-responsive" alt="<%= novel.title %>">
             </div>
-            <div class="post-content_item">
-                <div class="summary-heading"><h5>التصنيفات</h5></div>
-                <div class="summary-content genres-content">
-                    <% (novel.tags || novel.categories || []).forEach(tag => { %>
-                    <a href="#"><%= tag %></a>
-                    <% }) %>
+            <div class="post-content">
+                <div class="post-content_item">
+                    <div class="summary-heading"><h5>المؤلف</h5></div>
+                    <div class="summary-content author-content"><%= novel.author || 'غير معروف' %></div>
+                </div>
+                <div class="post-content_item">
+                    <div class="summary-heading"><h5>الحالة</h5></div>
+                    <div class="summary-content"><%= novel.status === 'مكتملة' || novel.is_completed ? 'Completed' : 'OnGoing' %></div>
+                </div>
+                <div class="post-content_item">
+                    <div class="summary-heading"><h5>التصنيفات</h5></div>
+                    <div class="summary-content genres-content">
+                        <% (novel.tags || novel.categories || []).forEach(tag => { %>
+                        <a href="#"><%= tag %></a>
+                        <% }) %>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="summary__content">
-            <h5>القصة</h5>
-            <div class="post-content_item">
-                <p><%= novel.description || novel.summary %></p>
+            <div class="summary__content">
+                <h5>القصة</h5>
+                <div class="post-content_item">
+                    <p><%= novel.description || novel.summary %></p>
+                </div>
             </div>
-        </div>
-        <div class="listing-chapters_wrap">
-            <ul class="main version-chap">
-                <% for(let i = 1; i <= (novel.totalChapters || 0); i++) { %>
-                <li class="wp-manga-chapter">
-                    <a href="/novel/<%= novel._id || novel.id %>/chapter/<%= i %>">الفصل <%= i %></a>
-                </li>
-                <% } %>
-            </ul>
+            <div class="listing-chapters_wrap" id="manga-chapters-holder">
+                <ul class="main version-chap">
+                    <% for(let i = 1; i <= (novel.totalChapters || 0); i++) { %>
+                    <li class="wp-manga-chapter">
+                        <a href="/novel/<%= novel._id || novel.id %>/chapter/<%= i %>">الفصل <%= i %></a>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
         </div>
     </div>
 </body>

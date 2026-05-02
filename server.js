@@ -39,6 +39,19 @@ app.get('/novel/:id', async (req, res) => {
     res.render('novel', { novel: data.data });
 });
 
+// Madara Ajax Chapters Emulator
+app.post(['/novel/:id/ajax/chapters', '/novel/:id/ajax/chapters/'], async (req, res) => {
+    const data = await getApiData(`${API_BASE}/novels/${req.params.id}`);
+    if (!data || !data.success || !data.data) return res.status(404).send('');
+    
+    let html = '<ul class="main version-chap">';
+    for(let i = 1; i <= (data.data.totalChapters || 0); i++) {
+        html += `<li class="wp-manga-chapter"><a href="/novel/${req.params.id}/chapter/${i}">الفصل ${i}</a></li>`;
+    }
+    html += '</ul>';
+    res.send(html);
+});
+
 app.get('/novel/:id/chapter/:num', async (req, res) => {
     const data = await getApiData(`${API_BASE}/novels/${req.params.id}/chapters/${req.params.num}`);
     if (!data || !data.success || !data.data) return res.status(404).send('الفصل غير موجود');

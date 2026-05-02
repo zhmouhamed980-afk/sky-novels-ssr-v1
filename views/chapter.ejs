@@ -6,19 +6,23 @@
     <title><%= chapter.title %></title>
 </head>
 <body class="wp-manga-template-default">
-    <div class="read-container">
-        <h1 class="chapter-title entry-title"><%= chapter.title %></h1>
-        <div class="reading-content chapter-content entry-content text-left">
-            <%- chapter.content %>
-        </div>
-        <div class="nav-links">
-            <div class="nav-previous">
-                <% if (chapterNum > 1) { %>
-                <a href="/novel/<%= novelId %>/chapter/<%= chapterNum - 1 %>" class="prev_page">الفصل السابق</a>
-                <% } %>
+    <div class="wrap">
+        <div class="read-container">
+            <h1 class="chapter-title entry-title"><%= chapter.title %></h1>
+            <div class="reading-content chapter-content entry-content text-left">
+                <div class="text-left">
+                    <%- chapter.content %>
+                </div>
             </div>
-            <div class="nav-next">
-                <a href="/novel/<%= novelId %>/chapter/<%= chapterNum + 1 %>" class="next_page">الفصل التالي</a>
+            <div class="nav-links">
+                <div class="nav-previous">
+                    <% if (chapterNum > 1) { %>
+                    <a href="/novel/<%= novelId %>/chapter/<%= chapterNum - 1 %>" class="prev_page">الفصل السابق</a>
+                    <% } %>
+                </div>
+                <div class="nav-next">
+                    <a href="/novel/<%= novelId %>/chapter/<%= chapterNum + 1 %>" class="next_page">الفصل التالي</a>
+                </div>
             </div>
         </div>
     </div>

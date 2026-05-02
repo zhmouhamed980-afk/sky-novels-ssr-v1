@@ -1,7 +1,7 @@
 {
   "name": "sky-novels-ssr",
-  "version": "5.0.0",
-  "description": "Strict Madara-Compatible SSR Wrapper for Scrapers",
+  "version": "5.1.0",
+  "description": "Professional Madara-Compatible SSR Wrapper with Ajax Support",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
