@@ -1,36 +1,28 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سماء الروايات - SSR</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 10px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .card img { width: 100%; border-radius: 4px; height: 200px; object-fit: cover; }
-        a { text-decoration: none; color: #333; }
-        .search-bar { margin-bottom: 30px; text-align: center; }
-        input { padding: 10px; width: 60%; border: 1px solid #ddd; border-radius: 4px; }
-        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    </style>
-</head>
-<body>
-    <div class="search-bar">
-        <form action="/search" method="GET">
-            <input type="text" name="q" placeholder="ابحث عن رواية...">
-            <button type="submit">بحث</button>
-        </form>
-    </div>
-
-    <h1>آخر التحديثات</h1>
-    <div class="grid">
-        <% novels.forEach(novel => { %>
-            <a href="/novel/<%= novel.id %>" class="card">
-                <img src="<%= novel.cover_url || novel.cover %>" alt="<%= novel.title %>">
-                <h3><%= novel.title %></h3>
-            </a>
-        <% }) %>
-    </div>
+<head><meta charset="UTF-8"><title>سماء الروايات</title></head>
+<body class="home-page">
+ <form action="/search" method="GET">
+ <input type="text" name="q" placeholder="ابحث...">
+ <button type="submit">بحث</button>
+ </form>
+ <div class="page-content-listing">
+ <div class="page-listing-item">
+ <% novels.forEach(novel => { %>
+ <div class="page-item-detail">
+ <div class="item-thumb">
+ <a href="/novel/<%= novel.id || novel._id %>">
+ <img src="<%= novel.coverImage || novel.cover_url || novel.cover %>" alt="<%= novel.title %>">
+ </a>
+ </div>
+ <div class="item-summary">
+ <div class="post-title">
+ <h3><a href="/novel/<%= novel.id || novel._id %>"><%= novel.title %></a></h3>
+ </div>
+ </div>
+ </div>
+ <% }) %>
+ </div>
+ </div>
 </body>
 </html>
