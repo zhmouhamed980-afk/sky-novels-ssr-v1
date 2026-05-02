@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><title><%= novel.title %></title></head>
+<head>
+    <meta charset="UTF-8">
+    <title><%= novel.title %></title>
+</head>
 <body class="wp-manga-template-default">
-    <div class="wrap">
-        <div class="site-content">
-            <div class="post-title">
-                <h1><%= novel.title %></h1>
+    <div class="site-content">
+        <div class="post-title">
+            <h1><%= novel.title %></h1>
+        </div>
+        <div class="summary_image">
+            <img src="<%= novel.coverImage || novel.cover_url || novel.cover %>" alt="<%= novel.title %>">
+        </div>
+        <div class="post-content">
+            <div class="post-content_item">
+                <div class="summary-heading"><h5>المؤلف</h5></div>
+                <div class="author-content"><%= novel.author || 'غير معروف' %></div>
             </div>
-            <div class="summary_image">
-                <img src="<%= novel.coverImage || novel.cover_url || novel.cover %>" class="img-responsive" alt="<%= novel.title %>">
+            <div class="post-content_item">
+                <div class="summary-heading"><h5>الحالة</h5></div>
+                <div class="summary-content"><%= novel.status === 'مكتملة' || novel.is_completed ? 'Completed' : 'OnGoing' %></div>
             </div>
-            <div class="post-content">
-                <div class="post-content_item">
-                    <div class="summary-heading"><h5>المؤلف</h5></div>
-                    <div class="author-content"><%= novel.author || 'غير معروف' %></div>
-                </div>
-                <div class="post-content_item">
-                    <div class="summary-heading"><h5>الحالة</h5></div>
-                    <div class="summary-content"><%= novel.status === 'مكتملة' || novel.is_completed ? 'Completed' : 'OnGoing' %></div>
-                </div>
-                <div class="post-content_item">
-                    <div class="summary-heading"><h5>التصنيفات</h5></div>
-                    <div class="genres-content">
-                        <% (novel.tags || novel.categories || []).forEach(tag => { %>
-                        <a href="#"><%= tag %></a>
-                        <% }) %>
-                    </div>
+            <div class="post-content_item">
+                <div class="summary-heading"><h5>التصنيفات</h5></div>
+                <div class="genres-content">
+                    <% (novel.tags || novel.categories || []).forEach(tag => { %>
+                    <a href="#"><%= tag %></a>
+                    <% }) %>
                 </div>
             </div>
-            <div class="summary__content">
-                <h5>القصة</h5>
-                <p><%= novel.description || novel.summary %></p>
-            </div>
-            <div class="listing-chapters_wrap">
-                <ul class="main version-chap">
-                    <% for(let i = 1; i <= (novel.totalChapters || 0); i++) { %>
-                    <li class="wp-manga-chapter">
-                        <a href="/novel/<%= novel._id || novel.id %>/chapter/<%= i %>">الفصل <%= i %></a>
-                    </li>
-                    <% } %>
-                </ul>
-            </div>
+        </div>
+        <div class="summary__content">
+            <h5>القصة</h5>
+            <p><%= novel.description || novel.summary %></p>
+        </div>
+        <div class="listing-chapters_wrap">
+            <ul class="main version-chap">
+                <% for(let i = 1; i <= (novel.totalChapters || 0); i++) { %>
+                <li class="wp-manga-chapter">
+                    <a href="/novel/<%= novel._id || novel.id %>/chapter/<%= i %>">الفصل <%= i %></a>
+                </li>
+                <% } %>
+            </ul>
         </div>
     </div>
 </body>
